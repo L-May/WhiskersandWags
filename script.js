@@ -7,6 +7,14 @@ const message = document.getElementById('message');
 const results = document.getElementById('results');
 
 
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('show-nav');
+});
+
+
 async function authenticate() {
   const res = await fetch('https://api.petfinder.com/v2/oauth2/token', {
     method: 'POST',

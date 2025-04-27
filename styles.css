@@ -263,3 +263,79 @@ nav {
     font-style: italic;
   }
   
+  .hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  /* Mobile view */
+  @media (max-width: 768px) {
+    nav {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 10px;
+    }
+  
+    #nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      background-color: #fff;
+      margin-top: 10px;
+    }
+  
+    #nav-links a {
+      margin: 10px 0;
+      display: block;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .show-nav {
+      display: flex !important;
+    }
+  
+    #header-img {
+      width: 60vw; /* Make logo smaller */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .container {
+      width: 90vw;
+      height: auto;
+      perspective: none;
+    }
+  
+    .card {
+      transform: none;
+    }
+  
+    .front-one, .front-two, .front-three, .front-four, .back {
+      position: relative;
+      backface-visibility: visible;
+    }
+  
+    .back {
+      transform: none;
+      display: none;
+    }
+  
+    .container img, .front-one, .front-two, .front-three, .front-four {
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      border-radius: 1rem;
+    }
+  }
+  
