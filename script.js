@@ -6,12 +6,20 @@ const loader = document.getElementById('loader');
 const message = document.getElementById('message');
 const results = document.getElementById('results');
 
-
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
+const links = document.querySelectorAll('#nav-links a'); // 🔥 new: select all links inside nav
 
+// Toggle nav menu when hamburger clicked
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('show-nav');
+});
+
+// Hide nav menu when a link is clicked
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('show-nav');
+  });
 });
 
 
@@ -175,3 +183,13 @@ async function searchOrganizations() {
     showLoader(false);
   }
 }
+
+// 📱 Enable flip-on-tap only on mobile
+document.querySelectorAll('.container').forEach(container => {
+  container.addEventListener('click', function() {
+    if (window.innerWidth <= 768) {
+      const card = this.querySelector('.card');
+      card.classList.toggle('flipped');
+    }
+  });
+});

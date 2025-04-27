@@ -7,28 +7,49 @@ body {
 }
 
 nav {
-    display: flex;
-    width: 100%;
-    height: 60px;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .nav-left, .nav-right {
-    flex: 1;
-    text-align: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 140px;
+  padding: 0 20px;
+  position: relative;
+}
 
-  #header-img {
-    width: 40vw;
-  }
+/* Container for the left and right links */
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 25px;
+}
 
-  nav a {
+.nav-left a, .nav-right a {
+  text-decoration: none;
+  color: #2A2B2A;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Logo - centered */
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo img {
+  width: 40vw; /* control logo size */
+}
+
+  /*nav a {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
     color: rgba(0,0,0,0.8);
     margin: 0 10px;
+  }*/
+
+  .hamburger {
+    display: none;
   }
 
   .cards {
@@ -48,6 +69,10 @@ nav {
   }
   .container:hover > .card {
     cursor: pointer;
+    transform: rotateY(180deg);
+  }
+
+  .card.flipped {
     transform: rotateY(180deg);
   }
 
@@ -263,22 +288,13 @@ nav {
     font-style: italic;
   }
   
-  .hamburger {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
-  }
-  
   /* Mobile view */
   @media (max-width: 768px) {
-    nav {
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 10px;
+    .nav-left, .nav-right {
+      display: none;
     }
-  
-    #nav-links {
+
+    .nav-links {
       display: none;
       flex-direction: column;
       width: 100%;
@@ -287,13 +303,13 @@ nav {
       margin-top: 10px;
     }
   
-    #nav-links a {
-      margin: 10px 0;
-      display: block;
-    }
+    #nav-links.show {
+      display: flex;
   
     .hamburger {
       display: block;
+      font-size: 30px;
+      cursor: pointer;
     }
   
     .show-nav {
@@ -311,22 +327,40 @@ nav {
   
     .container {
       width: 90vw;
-      height: auto;
-      perspective: none;
+      height: 300px;
+      perspective: 800px;
     }
   
     .card {
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease-in-out;
+      height: 100%;
+      width: 100%;
+    }
+
+    .container:hover .card{
       transform: none;
     }
   
     .front-one, .front-two, .front-three, .front-four, .back {
-      position: relative;
-      backface-visibility: visible;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+    }
+
+    .front-one, .front-two, .front-three, .front-four {
+      background-size: cover;
+      background-position: center;
     }
   
     .back {
-      transform: none;
-      display: none;
+      transform: rotateY(180deg);
+      background-color: #FF8966;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   
     .container img, .front-one, .front-two, .front-three, .front-four {
